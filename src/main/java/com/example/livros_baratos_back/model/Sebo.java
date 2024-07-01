@@ -7,13 +7,14 @@ import jakarta.persistence.Id;
 
 @Entity
 public class Sebo {
+
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Long id;
 
     private String nome;
     private String localizacao;
-    private Estoque estoque;
+    private Acervo acervo;
 
     public Long getId() {
         return id;
@@ -39,12 +40,12 @@ public class Sebo {
         this.localizacao = localizacao;
     }
     
-    public Estoque getEstoque() {
-        return estoque;
+    public Acervo getAcervo() {
+        return acervo;
     }
     
-    public void setEstoque(Estoque estoque) {
-        this.estoque = estoque;
+    public void setEstoque(Acervo acervo) {
+        this.acervo = acervo;
     } 
 
 }
