@@ -22,4 +22,12 @@ public class SeboService {
     public Optional<Sebo> findById(Long id){
         return seboRepository.findById(id);
     }
+
+    public Sebo save(Sebo sebo){
+        return seboRepository.save(sebo);
+    }
+
+    public void deleteById(Long id){
+        seboRepository.deleteById(id);
+    }
 }
