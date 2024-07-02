@@ -32,13 +32,13 @@ public class LivroController {
     }
 
     @PostMapping
-    public Livro salvar(@RequestBody Livro livro) {
+    public ResponseEntity<Livro> salvar(@RequestBody Livro livro) {
         Livro livroSalvo = livroService.salvar(livro);
         URI location = ServletUriComponentsBuilder.fromCurrentRequest()
                 .path("/{id}")
                 .buildAndExpand(livroSalvo.getId())
                 .toUri();
-        return ResponseEntity.created(location).body(livroSalvo).getBody();
+        return ResponseEntity.created(location).body(livroSalvo);
     }
 
     @PutMapping("/{id}")
