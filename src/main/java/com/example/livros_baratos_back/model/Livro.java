@@ -19,7 +19,7 @@ public class Livro {
     private double preco;
 
     @Enumerated(EnumType.STRING)
-    private Condicao condicao;
+    private EnumCondicao enumCondicao;
 
     // Getters e Setters
 
@@ -63,11 +63,11 @@ public class Livro {
         this.preco = preco;
     }
 
-    public Condicao getCondicao() {
-        return condicao;
+    public EnumCondicao getCondicao() {
+        return enumCondicao;
     }
 
-    public void setCondicao(Condicao condicao) {
-        this.condicao = condicao;
+    public void setCondicao(EnumCondicao enumCondicao) {
+        this.enumCondicao = enumCondicao;
     }
 }
