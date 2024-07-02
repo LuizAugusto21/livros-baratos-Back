@@ -44,7 +44,7 @@ public class Sebo {
         return acervo;
     }
     
-    public void setEstoque(Acervo acervo) {
+    public void setAcervo(Acervo acervo) {
         this.acervo = acervo;
     } 
 

@@ -16,7 +16,18 @@ public class Livro {
     private String autor;
     private String genero;
     private int ano;
+    private double preco;
     
+
+    public double getPreco() {
+        return preco;
+    }
+
+
+    public void setPreco(double preco) {
+        this.preco = preco;
+    }
+
 
     @ManyToOne
     @JoinColumn(name = "acervo_id")

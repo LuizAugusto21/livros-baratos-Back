@@ -3,6 +3,7 @@ package com.example.livros_baratos_back.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -27,41 +28,44 @@ public class SeboController {
         this.seboService = seboService;
     }
 
-    @GetMapping
-    public List<Sebo> getAllSebos(){
-        return seboService.findAll();
+    @GetMapping("/sebos")
+    public ResponseEntity<List<Sebo>> listarSebos(){
+        List<Sebo> sebos = seboService.listarSebos();
+        return ResponseEntity.ok(sebos);
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<Sebo> getSeboById(@PathVariable Long id){
-        return seboService.findById(id)
-                .map(ResponseEntity::ok)
-                .orElse(ResponseEntity.notFound().build());
-    }
-
-    @PostMapping
-    public Sebo createSebo(@RequestBody Sebo sebo){
-        return seboService.save(sebo);
-    }
-
-    @PutMapping("/{id}")
-    public ResponseEntity<Sebo> updateSebo(@PathVariable Long id, @RequestBody Sebo sebo){
-        return seboService.findById(id)
-                .map(existingSebo -> {
-                    sebo.setId(existingSebo.getId());
-                    return ResponseEntity.ok(seboService.save(sebo));
-                })
-                .orElse(ResponseEntity.notFound().build());
-    }
-
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteSebo(@PathVariable Long id){
-        if(seboService.findById(id).isPresent()){
-            seboService.deleteById(id);
-            return ResponseEntity.noContent().build();
+    @GetMapping("/sebos/{id}")
+    public ResponseEntity<Sebo> buscarPorId(@PathVariable Long id){
+        Sebo sebo = seboService.buscarSeboPorId(id);
+        if( sebo != null){
+            return ResponseEntity.ok(sebo);
         }
-        else {
+        else{
             return ResponseEntity.notFound().build();
         }
+    }
+
+    @PostMapping("/sebos")
+    public ResponseEntity<Sebo> salvarSebo(@RequestBody Sebo sebo){
+        Sebo novoSebo = seboService.salvarSebo(sebo);
+        return ResponseEntity.status(HttpStatus.CREATED).body(novoSebo);
+    }
+
+    @PutMapping("/sebos/{id}")
+    public ResponseEntity<Sebo> AtualizarSebo(@PathVariable Long id, @RequestBody Sebo seboAtualizado){
+        Sebo sebo = seboService.atualizarSebo(id, seboAtualizado);
+        if(sebo != null){
+            return ResponseEntity.ok(sebo);
+        }
+        else{
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+    @DeleteMapping("/sebos/{id}")
+    public ResponseEntity<Void> deletarSebo(@PathVariable Long id){
+        seboService.deletarSeboPorId(id);
+        return ResponseEntity.noContent().build();
+        
     }
 }

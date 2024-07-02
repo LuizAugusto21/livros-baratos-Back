@@ -1,33 +1,47 @@
 package com.example.livros_baratos_back.service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.livros_baratos_back.model.Sebo;
-import com.example.livros_baratos_back.repository.SeboRepository;
 
 @Service
 public class SeboService {
     
-    @Autowired
-    private SeboRepository seboRepository;
+    private final List<Sebo> sebos = new ArrayList<>();
+    private long currentId = 1;
 
-    public List<Sebo> findAll(){
-        return seboRepository.findAll();
+    public List<Sebo> listarSebos(){
+        return new ArrayList<>(sebos);
     }
 
-    public Optional<Sebo> findById(Long id){
-        return seboRepository.findById(id);
+    public Sebo buscarSeboPorId(Long id){
+        return sebos.stream().filter(sebo -> sebo.getId().equals(id)).findFirst().orElse(null);
     }
 
-    public Sebo save(Sebo sebo){
-        return seboRepository.save(sebo);
+    public Sebo salvarSebo(Sebo sebo){
+        sebo.setId(currentId++);
+        sebos.add(sebo); 
+        return sebo;
     }
 
-    public void deleteById(Long id){
-        seboRepository.deleteById(id);
+    public Sebo atualizarSebo(Long id, Sebo seboAtualizado){
+        Optional<Sebo> seboOptional = sebos.stream().filter(sebo -> sebo.getId().equals(id)).findFirst();
+
+        if(seboOptional.isPresent()){
+            Sebo sebo = seboOptional.get();
+            sebo.setNome(seboAtualizado.getNome());
+            sebo.setLocalizacao(seboAtualizado.getLocalizacao());
+            sebo.setAcervo(seboAtualizado.getAcervo());
+            return sebo;
+        }
+        return null;
+    }
+
+    public void deletarSeboPorId(Long id){
+        sebos.removeIf(sebo -> sebo.getId().equals(id));
     }
 }
