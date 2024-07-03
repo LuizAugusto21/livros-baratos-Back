@@ -33,9 +33,21 @@ public class AcervoService {
 
         if(livroOptional.isPresent()){
             Livro livro = livroOptional.get();
-            livro.setTitulo(livroAtualizado.getTitulo());
-            livro.setAutor(livroAtualizado.getAutor());
-            livro.setPreco(livroAtualizado.getPreco());
+            if(livroAtualizado.getTitulo() != null){
+                livro.setTitulo(livroAtualizado.getTitulo());
+            }
+            if(livroAtualizado.getAutor() != null){
+                livro.setAutor(livroAtualizado.getAutor());
+            }
+            if(livroAtualizado.getPreco() != null){
+                livro.setPreco(livroAtualizado.getPreco());
+            }
+            if(livroAtualizado.getGenero() != null){
+                livro.setGenero(livroAtualizado.getGenero());
+            }
+            if(livroAtualizado.getAno() != null){
+                livro.setAno(livroAtualizado.getAno());
+            }
             return livro;
         }
         return null;

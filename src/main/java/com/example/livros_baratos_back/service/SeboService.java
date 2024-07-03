@@ -33,9 +33,15 @@ public class SeboService {
 
         if(seboOptional.isPresent()){
             Sebo sebo = seboOptional.get();
-            sebo.setNome(seboAtualizado.getNome());
-            sebo.setLocalizacao(seboAtualizado.getLocalizacao());
-            sebo.setAcervo(seboAtualizado.getAcervo());
+            if(seboAtualizado.getNome() != null){
+                sebo.setNome(seboAtualizado.getNome());
+            }
+            if(seboAtualizado.getLocalizacao() != null){
+                sebo.setLocalizacao(seboAtualizado.getLocalizacao());
+            }
+            if(seboAtualizado.getAcervo() != null){
+                sebo.setAcervo(seboAtualizado.getAcervo());
+            }
             return sebo;
         }
         return null;

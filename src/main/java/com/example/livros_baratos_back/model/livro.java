@@ -15,16 +15,16 @@ public class Livro {
     private String titulo;
     private String autor;
     private String genero;
-    private int ano;
-    private double preco;
+    private Integer ano;
+    private Double preco;
     
 
-    public double getPreco() {
+    public Double getPreco() {
         return preco;
     }
 
 
-    public void setPreco(double preco) {
+    public void setPreco(Double preco) {
         this.preco = preco;
     }
 
@@ -72,12 +72,12 @@ public class Livro {
     }
 
 
-    public int getAno() {
+    public Integer getAno() {
         return ano;
     }
 
 
-    public void setAno(int ano) {
+    public void setAno(Integer ano) {
         this.ano = ano;
     }
 

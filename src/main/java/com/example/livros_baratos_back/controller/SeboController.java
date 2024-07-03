@@ -28,13 +28,13 @@ public class SeboController {
         this.seboService = seboService;
     }
 
-    @GetMapping("/sebos")
+    @GetMapping("/")
     public ResponseEntity<List<Sebo>> listarSebos(){
         List<Sebo> sebos = seboService.listarSebos();
         return ResponseEntity.ok(sebos);
     }
 
-    @GetMapping("/sebos/{id}")
+    @GetMapping("/{id}")
     public ResponseEntity<Sebo> buscarPorId(@PathVariable Long id){
         Sebo sebo = seboService.buscarSeboPorId(id);
         if( sebo != null){
@@ -45,13 +45,13 @@ public class SeboController {
         }
     }
 
-    @PostMapping("/sebos")
+    @PostMapping("/")
     public ResponseEntity<Sebo> salvarSebo(@RequestBody Sebo sebo){
         Sebo novoSebo = seboService.salvarSebo(sebo);
         return ResponseEntity.status(HttpStatus.CREATED).body(novoSebo);
     }
 
-    @PutMapping("/sebos/{id}")
+    @PutMapping("/{id}")
     public ResponseEntity<Sebo> AtualizarSebo(@PathVariable Long id, @RequestBody Sebo seboAtualizado){
         Sebo sebo = seboService.atualizarSebo(id, seboAtualizado);
         if(sebo != null){
@@ -62,7 +62,7 @@ public class SeboController {
         }
     }
 
-    @DeleteMapping("/sebos/{id}")
+    @DeleteMapping("/{id}")
     public ResponseEntity<Void> deletarSebo(@PathVariable Long id){
         seboService.deletarSeboPorId(id);
         return ResponseEntity.noContent().build();
