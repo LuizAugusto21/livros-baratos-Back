@@ -1,5 +1,6 @@
 package com.example.livros_baratos_back.model;
 
+import jakarta.annotation.Generated;
 import jakarta.persistence.*;
 
 @Entity
@@ -16,12 +17,20 @@ public class Livro {
 
     private String nomeAutor;
 
+    private String genero;
+
+    @Lob
+    private String imagemCapa;
+
     private double preco;
+
 
     @Enumerated(EnumType.STRING)
     private EnumCondicao condicao;
 
-    // Getters e Setters
+    @Enumerated(EnumType.STRING)
+    private EnumSituacao situacao;
+
 
     public long getId() {
         return id;
@@ -55,6 +64,22 @@ public class Livro {
         this.nomeAutor = nomeAutor;
     }
 
+    public String getGenero() {
+        return genero;
+    }
+
+    public void setGenero(String genero) {
+        this.genero = genero;
+    }
+
+    public String getImagemCapa() {
+        return imagemCapa;
+    }
+
+    public void setImagemCapa(String imagemCapa) {
+        this.imagemCapa = imagemCapa;
+    }
+
     public double getPreco() {
         return preco;
     }
@@ -69,5 +94,13 @@ public class Livro {
 
     public void setCondicao(EnumCondicao condicao) {
         this.condicao = condicao;
+    }
+
+    public EnumSituacao getSituacao() {
+        return situacao;
+    }
+
+    public void setSituacao(EnumSituacao situacao) {
+        this.situacao = situacao;
     }
 }
