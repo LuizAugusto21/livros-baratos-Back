@@ -1,5 +1,6 @@
 package com.example.livros_baratos_back.service;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +17,10 @@ public class SeboService {
     @Autowired
     public SeboService(SeboRepository seboRepository){
         this.seboRepository = seboRepository;
+    }
+
+    public List<Sebo> listarSebos(){
+        return seboRepository.findAll();
     }
 
     public Optional<Sebo> buscarSeboPorId(Long id){
