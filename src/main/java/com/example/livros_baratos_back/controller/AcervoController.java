@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.livros_baratos_back.model.Acervo;
 import com.example.livros_baratos_back.model.Livro;
 import com.example.livros_baratos_back.service.AcervoService;
 
@@ -45,7 +46,6 @@ public class AcervoController {
             return ResponseEntity.notFound().build();
         }
     }
-
 
     @PostMapping("/livros")
     public ResponseEntity<Livro> adicionarLivro(@RequestBody Livro livro){

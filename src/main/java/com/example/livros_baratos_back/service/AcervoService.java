@@ -26,8 +26,8 @@ public class AcervoService {
         livro.setId(currentId++);
         livros.add(livro);
         return livro;        
-    }
-
+    }    
+    
     public Livro atualizarLivro(Long id, Livro livroAtualizado){
         Optional<Livro> livroOptional = livros.stream().filter(livro -> livro.getId().equals(id)).findFirst();
 

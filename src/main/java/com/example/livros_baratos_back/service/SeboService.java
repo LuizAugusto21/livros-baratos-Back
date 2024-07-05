@@ -22,6 +22,10 @@ public class SeboService {
         return sebos.stream().filter(sebo -> sebo.getId().equals(id)).findFirst().orElse(null);
     }
 
+    public Sebo buscarSeboPorNome(String nome){
+        return sebos.stream().filter(sebo -> sebo.getNome().equals(nome)).findFirst().orElse(null);
+    }
+
     public Sebo salvarSebo(Sebo sebo){
         sebo.setId(currentId++);
         sebos.add(sebo); 
