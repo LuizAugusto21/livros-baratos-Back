@@ -12,6 +12,8 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Lob;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import jakarta.annotation.Generated;
+import jakarta.persistence.*;
 
 @Entity
 @Table(name = "livros")
