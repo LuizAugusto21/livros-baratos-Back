@@ -1,5 +1,17 @@
 package com.example.livros_baratos_back.model;
 
+import java.util.List;
+
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Lob;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.Table;
 import jakarta.annotation.Generated;
 import jakarta.persistence.*;
 
@@ -31,6 +43,8 @@ public class Livro {
     @Enumerated(EnumType.STRING)
     private EnumSituacao situacao;
 
+    @OneToMany(mappedBy = "itemMovimentado", cascade = CascadeType.ALL)
+    private List<Movimentacoes> movimentacoes;
 
     public long getId() {
         return id;
