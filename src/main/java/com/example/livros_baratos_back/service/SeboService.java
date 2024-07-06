@@ -37,23 +37,23 @@ public class SeboService {
     }
 
     // TESTAR APÓS ADAPTAÇÃO
-    public Sebo atualizarSebo(Long id, Sebo seboAtualizado){
-        Optional<Sebo> seboOpt = seboRepository.findById(id);
-        if(seboOpt.isPresent()){
-            Sebo sebo = seboOpt.get();
-            if(seboAtualizado.getNome() != null){
-                sebo.setNome(seboAtualizado.getNome());
-            }
-            if(seboAtualizado.getLocalizacao() != null){
-                sebo.setLocalizacao(seboAtualizado.getLocalizacao());
-            }
-            if(seboAtualizado.getAcervo() != null){
-                sebo.setAcervo(seboAtualizado.getAcervo());
-            }
-            return sebo;
-        }
-        return null;
-    }
+//    public Sebo atualizarSebo(Long id, Sebo seboAtualizado){
+//        Optional<Sebo> seboOpt = seboRepository.findById(id);
+//        if(seboOpt.isPresent()){
+//            Sebo sebo = seboOpt.get();
+//            if(seboAtualizado.getNome() != null){
+//                sebo.setNome(seboAtualizado.getNome());
+//            }
+//            if(seboAtualizado.getLocalizacao() != null){
+//                sebo.setLocalizacao(seboAtualizado.getLocalizacao());
+//            }
+//            if(seboAtualizado.getAcervo() != null){
+//                sebo.setAcervo(seboAtualizado.getAcervo());
+//            }
+//            return sebo;
+//        }
+//        return null;
+//    }
 
     
     public void deletarSeboPorId(Long id){

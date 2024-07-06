@@ -20,7 +20,7 @@ import com.example.livros_baratos_back.model.Sebo;
 import com.example.livros_baratos_back.service.SeboService;
 
 @RestController
-@RequestMapping("/sebos")
+@RequestMapping("/api/sebos")
 public class SeboController {
 
     private final SeboService seboService;
@@ -82,16 +82,16 @@ public class SeboController {
         return ResponseEntity.created(location).body(seboSalvo);
     }
 
-    @PutMapping("/{id}")
-    public ResponseEntity<Sebo> atualizarSebo(@PathVariable Long id, @RequestBody Sebo seboAtualizado){
-        Sebo sebo = seboService.atualizarSebo(id, seboAtualizado);
-        if(sebo != null){
-            return ResponseEntity.ok(sebo);
-        }
-        else{
-            return ResponseEntity.notFound().build();
-        }
-    }
+//    @PutMapping("/{id}")
+//    public ResponseEntity<Sebo> atualizarSebo(@PathVariable Long id, @RequestBody Sebo seboAtualizado){
+//        Sebo sebo = seboService.atualizarSebo(id, seboAtualizado);
+//        if(sebo != null){
+//            return ResponseEntity.ok(sebo);
+//        }
+//        else{
+//            return ResponseEntity.notFound().build();
+//        }
+//    }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deletarSebo(@PathVariable Long id){
