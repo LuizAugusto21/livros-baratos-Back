@@ -31,6 +31,18 @@ public class LivroController {
         return livro.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
     }
 
+    @GetMapping("/buscarPorNome")
+    public ResponseEntity<List<Livro>> buscarPorNome(@RequestParam String nome) {
+        List<Livro> livros = livroService.buscarPorNome(nome);
+        return ResponseEntity.ok(livros);
+    }
+
+    @GetMapping("/buscarPorGenero")
+    public ResponseEntity<List<Livro>> buscarPorGenero(@RequestParam String genero) {
+        List<Livro> livros = livroService.buscarPorGenero(genero);
+        return ResponseEntity.ok(livros);
+    }
+
     @PostMapping
     public ResponseEntity<Livro> salvar(@RequestBody Livro livro) {
         Livro livroSalvo = livroService.salvar(livro);

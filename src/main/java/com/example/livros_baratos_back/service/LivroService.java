@@ -2,6 +2,7 @@ package com.example.livros_baratos_back.service;
 
 import com.example.livros_baratos_back.model.Livro;
 import com.example.livros_baratos_back.repository.LivroRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -32,5 +33,14 @@ public class LivroService {
 
     public void deletar(Long id) {
         livroRepository.deleteById(id);
+    }
+
+    @Transactional
+    public List<Livro> buscarPorNome(String nome) {
+        return livroRepository.findByNomeContaining(nome);
+    }
+    @Transactional
+    public List<Livro> buscarPorGenero(String genero) {
+        return livroRepository.findByGeneroContaining(genero);
     }
 }
