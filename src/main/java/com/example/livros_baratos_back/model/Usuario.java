@@ -1,25 +1,30 @@
 package com.example.livros_baratos_back.model;
 
-import java.util.ArrayList;
-import java.util.List;
-
+import jakarta.persistence.DiscriminatorColumn;
+import jakarta.persistence.DiscriminatorType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.Inheritance;
+import jakarta.persistence.InheritanceType;
 
 @Entity
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name = "tipo", discriminatorType = DiscriminatorType.STRING)
 public class Usuario {
-	
+  
+
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long idUsuario;
     private String login;
+    private String nome;
     private String email;
     private String senha;
-    private String telefone;
+    private String contato;
     private String endereco;
     
     @Enumerated(EnumType.ORDINAL)
@@ -32,13 +37,21 @@ public class Usuario {
     public void setIdUsuario(Long idUsuario) {
         this.idUsuario = idUsuario;
     }
+    
+    public String getLogin() {
+		return login;
+	}
+
+	public void setLogin(String login) {
+		this.login = login;
+	}
 
     public String getNome() {
-        return login;
+        return nome;
     }
 
     public void setNome(String nome) {
-        this.login = nome;
+        this.nome = nome;
     }
 
     public String getEmail() {
@@ -57,29 +70,29 @@ public class Usuario {
         this.senha = senha;
     }
 
-	public String getTelefone() {
-		return telefone;
-	}
+    public String getcontato() {
+        return contato;
+    }
 
-	public void setTelefone(String telefone) {
-		this.telefone = telefone;
-	}
+    public void setcontato(String contato) {
+        this.contato = contato;
+    }
 
-	public String getEndereco() {
-		return endereco;
-	}
+    public String getEndereco() {
+        return endereco;
+    }
 
-	public void setEndereco(String endereco) {
-		this.endereco = endereco;
-	}
+    public void setEndereco(String endereco) {
+        this.endereco = endereco;
+    }
 
-	public TipoUsuario getTipoUsuario() {
-		return tipoUsuario;
-	}
+    public TipoUsuario getTipoUsuario() {
+        return tipoUsuario;
+    }
 
-	public void setTipoUsuario(TipoUsuario tipoUsuario) {
-		this.tipoUsuario = tipoUsuario;
-	}
+    public void setTipoUsuario(TipoUsuario tipoUsuario) {
+        this.tipoUsuario = tipoUsuario;
+    }
 
 }
 
@@ -87,5 +100,3 @@ enum TipoUsuario {
     PESSOA,
     SEBO
 }
-
-
