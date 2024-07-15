@@ -1,4 +1,4 @@
-package com.example.livros_baratos_back.controller;
+package com.example.livros_baratos_back.rest.controller;
 
 import java.net.URI;
 import java.util.List;

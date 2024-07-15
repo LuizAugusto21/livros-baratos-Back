@@ -1,20 +1,31 @@
 package com.example.livros_baratos_back.model;
 
-import java.util.ArrayList;
-import java.util.List;
-
+import jakarta.persistence.DiscriminatorColumn;
+import jakarta.persistence.DiscriminatorType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.Inheritance;
+import jakarta.persistence.InheritanceType;
 
 @Entity
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name = "tipo", discriminatorType = DiscriminatorType.STRING)
 public class Usuario {
-	
+    
+    public String getLogin() {
+		return login;
+	}
+
+	public void setLogin(String login) {
+		this.login = login;
+	}
+
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long idUsuario;
     private String login;
     private String email;
@@ -57,29 +68,29 @@ public class Usuario {
         this.senha = senha;
     }
 
-	public String getTelefone() {
-		return telefone;
-	}
+    public String getTelefone() {
+        return telefone;
+    }
 
-	public void setTelefone(String telefone) {
-		this.telefone = telefone;
-	}
+    public void setTelefone(String telefone) {
+        this.telefone = telefone;
+    }
 
-	public String getEndereco() {
-		return endereco;
-	}
+    public String getEndereco() {
+        return endereco;
+    }
 
-	public void setEndereco(String endereco) {
-		this.endereco = endereco;
-	}
+    public void setEndereco(String endereco) {
+        this.endereco = endereco;
+    }
 
-	public TipoUsuario getTipoUsuario() {
-		return tipoUsuario;
-	}
+    public TipoUsuario getTipoUsuario() {
+        return tipoUsuario;
+    }
 
-	public void setTipoUsuario(TipoUsuario tipoUsuario) {
-		this.tipoUsuario = tipoUsuario;
-	}
+    public void setTipoUsuario(TipoUsuario tipoUsuario) {
+        this.tipoUsuario = tipoUsuario;
+    }
 
 }
 
@@ -87,5 +98,3 @@ enum TipoUsuario {
     PESSOA,
     SEBO
 }
-
-

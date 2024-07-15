@@ -1,4 +1,4 @@
-package com.example.livros_baratos_back.controller;
+package com.example.livros_baratos_back.rest.controller;
 
 
 import com.example.livros_baratos_back.model.Livro;
