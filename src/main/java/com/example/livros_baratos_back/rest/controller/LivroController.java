@@ -1,6 +1,7 @@
 package com.example.livros_baratos_back.rest.controller;
 
 
+import com.example.livros_baratos_back.model.EnumCondicao;
 import com.example.livros_baratos_back.model.Livro;
 import com.example.livros_baratos_back.service.LivroService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,6 +46,7 @@ public class LivroController {
 
     @PostMapping
     public ResponseEntity<Livro> salvar(@RequestBody Livro livro) {
+        livro.setCondicao(EnumCondicao.fromString(String.valueOf(livro.getCondicao())));
         Livro livroSalvo = livroService.salvar(livro);
         URI location = ServletUriComponentsBuilder.fromCurrentRequest()
                 .path("/{id}")
