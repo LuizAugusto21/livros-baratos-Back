@@ -31,7 +31,7 @@ public class Livro {
 
     private String genero;
 
-    @Lob
+
     private String imagemCapa;
 
     private double preco;
