@@ -15,22 +15,16 @@ import jakarta.persistence.InheritanceType;
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "tipo", discriminatorType = DiscriminatorType.STRING)
 public class Usuario {
-    
-    public String getLogin() {
-		return login;
-	}
-
-	public void setLogin(String login) {
-		this.login = login;
-	}
+  
 
 	@Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long idUsuario;
     private String login;
+    private String nome;
     private String email;
     private String senha;
-    private String telefone;
+    private String contato;
     private String endereco;
     
     @Enumerated(EnumType.ORDINAL)
@@ -43,13 +37,21 @@ public class Usuario {
     public void setIdUsuario(Long idUsuario) {
         this.idUsuario = idUsuario;
     }
+    
+    public String getLogin() {
+		return login;
+	}
+
+	public void setLogin(String login) {
+		this.login = login;
+	}
 
     public String getNome() {
-        return login;
+        return nome;
     }
 
     public void setNome(String nome) {
-        this.login = nome;
+        this.nome = nome;
     }
 
     public String getEmail() {
@@ -68,12 +70,12 @@ public class Usuario {
         this.senha = senha;
     }
 
-    public String getTelefone() {
-        return telefone;
+    public String getcontato() {
+        return contato;
     }
 
-    public void setTelefone(String telefone) {
-        this.telefone = telefone;
+    public void setcontato(String contato) {
+        this.contato = contato;
     }
 
     public String getEndereco() {

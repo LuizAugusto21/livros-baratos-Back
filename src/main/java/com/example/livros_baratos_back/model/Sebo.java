@@ -7,18 +7,9 @@ import jakarta.persistence.Entity;
 @DiscriminatorValue("SEBO")
 public class Sebo extends Usuario {
 
-    private String nome;
     private String localizacao;
     private String cnpj;
 //    private Acervo acervo;
-
-    public String getNome() {
-        return nome;
-    }
-    
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
     
     public String getLocalizacao() {
         return localizacao;

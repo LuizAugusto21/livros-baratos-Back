@@ -26,8 +26,13 @@ public class UsuarioService {
 
     public Usuario saveUsuario(Usuario usuario) {
         if (usuarioRepository.findByLogin(usuario.getLogin()).isPresent()) {
-            throw new UserAlreadyExistsException("Um usuário com este login já existe.");
+            throw new UserAlreadyExistsException("Já existe um usuário com o login informado.");
+        } 
+        
+        if(usuarioRepository.findByEmail(usuario.getEmail()).isPresent()) {
+        	throw new UserAlreadyExistsException("Já existe um usuário com o email informado.");
         }
+        
         return usuarioRepository.save(usuario);
     }
 

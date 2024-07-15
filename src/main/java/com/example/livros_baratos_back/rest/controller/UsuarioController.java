@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.livros_baratos_back.exception.UserAlreadyExistsException;
 import com.example.livros_baratos_back.model.Pessoa;
 import com.example.livros_baratos_back.model.Sebo;
 import com.example.livros_baratos_back.model.Usuario;
@@ -29,31 +30,35 @@ public class UsuarioController {
     private UsuarioService usuarioService;
 
     @GetMapping("{idUsuario}")
-    public Usuario getClienteById(@PathVariable Integer idUsuario) {
-        return usuarioService.getUsuarioById(idUsuario);
+    public ResponseEntity<Usuario> getClienteById(@PathVariable Integer idUsuario) {
+        return ResponseEntity.ok(usuarioService.getUsuarioById(idUsuario));
     }
 
     @PostMapping
-    @ResponseStatus(HttpStatus.CREATED)
-    public Usuario save(@RequestBody Usuario usuario) {
-        return usuarioService.saveUsuario(usuario);
+    public ResponseEntity<?> save(@RequestBody Usuario usuario) {
+        try {
+            Usuario savedUsuario = usuarioService.saveUsuario(usuario);
+            return new ResponseEntity<>(savedUsuario, HttpStatus.CREATED);
+        } catch (UserAlreadyExistsException e) {
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.CONFLICT);
+        }
     }
 
     @DeleteMapping("{idUsuario}")
-    @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void delete(@PathVariable Integer idUsuario) {
+    public ResponseEntity<Void> delete(@PathVariable Integer idUsuario) {
         usuarioService.deleteUsuario(idUsuario);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
     @PutMapping("{idUsuario}")
-    @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void update(@PathVariable Integer idUsuario, @RequestBody Usuario usuario) {
+    public ResponseEntity<Void> update(@PathVariable Integer idUsuario, @RequestBody Usuario usuario) {
         usuarioService.updateUsuario(idUsuario, usuario);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
     @GetMapping
-    public List<Usuario> find(Usuario filtro) {
-        return usuarioService.findUsuarios(filtro);
+    public ResponseEntity<List<Usuario>> find(Usuario filtro) {
+        return ResponseEntity.ok(usuarioService.findUsuarios(filtro));
     }
 
     @PostMapping("/pessoas")
@@ -69,13 +74,12 @@ public class UsuarioController {
     }
     
     @PostMapping("/login")
-    public ResponseEntity<Usuario> login(@RequestBody Usuario loginRequest) {
+    public ResponseEntity<?> login(@RequestBody Usuario loginRequest) {
         Optional<Usuario> usuarioOptional = usuarioService.findByLogin(loginRequest.getLogin());
         if (usuarioOptional.isPresent() && usuarioOptional.get().getSenha().equals(loginRequest.getSenha())) {
             return ResponseEntity.ok(usuarioOptional.get());
         } else {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Credenciais inválidas.");
         }
     }
-
 }
