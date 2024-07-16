@@ -43,4 +43,6 @@ public class LivroService {
     public List<Livro> buscarPorGenero(String genero) {
         return livroRepository.findByGeneroContaining(genero);
     }
+    
+    
 }

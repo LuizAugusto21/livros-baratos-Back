@@ -1,23 +1,29 @@
 package com.example.livros_baratos_back.model;
 
+import java.util.List;
+import java.util.Set;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.DiscriminatorColumn;
 import jakarta.persistence.DiscriminatorType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Inheritance;
 import jakarta.persistence.InheritanceType;
+import jakarta.persistence.OneToMany;
 
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "tipo", discriminatorType = DiscriminatorType.STRING)
 public class Usuario {
-  
 
-	@Id
+    @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long idUsuario;
     private String login;
@@ -27,9 +33,17 @@ public class Usuario {
     private String contato;
     private String endereco;
     
+    @OneToMany(mappedBy = "proprietario")
+    private List<Livro> livros;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "usuario", fetch = FetchType.LAZY)  // Aqui corrigimos para "usuario"
+    private Set<Pedido> pedidos;
+    
     @Enumerated(EnumType.ORDINAL)
     private TipoUsuario tipoUsuario;
 
+    // Getters e setters
     public Long getIdUsuario() {
         return idUsuario;
     }
@@ -37,14 +51,14 @@ public class Usuario {
     public void setIdUsuario(Long idUsuario) {
         this.idUsuario = idUsuario;
     }
-    
-    public String getLogin() {
-		return login;
-	}
 
-	public void setLogin(String login) {
-		this.login = login;
-	}
+    public String getLogin() {
+        return login;
+    }
+
+    public void setLogin(String login) {
+        this.login = login;
+    }
 
     public String getNome() {
         return nome;
@@ -70,14 +84,6 @@ public class Usuario {
         this.senha = senha;
     }
 
-    public String getcontato() {
-        return contato;
-    }
-
-    public void setcontato(String contato) {
-        this.contato = contato;
-    }
-
     public String getEndereco() {
         return endereco;
     }
@@ -94,6 +100,21 @@ public class Usuario {
         this.tipoUsuario = tipoUsuario;
     }
 
+    public String getContato() {
+        return contato;
+    }
+
+    public void setContato(String contato) {
+        this.contato = contato;
+    }
+
+    public Set<Pedido> getPedidos() {
+        return pedidos;
+    }
+
+    public void setPedidos(Set<Pedido> pedidos) {
+        this.pedidos = pedidos;
+    }
 }
 
 enum TipoUsuario {

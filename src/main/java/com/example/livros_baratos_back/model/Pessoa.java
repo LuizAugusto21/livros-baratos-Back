@@ -9,7 +9,6 @@ import java.util.ArrayList;
 public class Pessoa extends Usuario {
 
     private String cpf;
-    private ArrayList<Movimentacoes> movimentacoes;
     private ArrayList<Livro> carrinho;
     private ArrayList<Livro> favoritos;
     
@@ -19,14 +18,6 @@ public class Pessoa extends Usuario {
 
     public void setCpf(String cpf) {
         this.cpf = cpf;
-    }
-
-    public ArrayList<Movimentacoes> getMovimentacoes() {
-        return movimentacoes;
-    }
-    
-    public void setMovimentacoes(ArrayList<Movimentacoes> movimentacoes) {
-        this.movimentacoes = movimentacoes;
     }
     
     public ArrayList<Livro> getCarrinho() {

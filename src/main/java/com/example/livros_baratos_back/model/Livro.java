@@ -31,12 +31,14 @@ public class Livro {
 
     private String genero;
 
-
     private String imagemCapa;
 
     private double preco;
 
-
+    @ManyToOne
+    @JoinColumn(name = "usuario_id")
+    private Usuario proprietario;
+    
     @Enumerated(EnumType.STRING)
     private EnumCondicao condicao;
 
@@ -117,4 +119,12 @@ public class Livro {
     public void setSituacao(EnumSituacao situacao) {
         this.situacao = situacao;
     }
+
+	public Usuario getProprietario() {
+		return proprietario;
+	}
+
+	public void setProprietario(Usuario proprietario) {
+		this.proprietario = proprietario;
+	}
 }
