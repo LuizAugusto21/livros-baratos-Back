@@ -44,10 +44,7 @@ public class Livro {
 
     @Enumerated(EnumType.STRING)
     private EnumSituacao situacao;
-
-    @OneToMany(mappedBy = "itemMovimentado", cascade = CascadeType.ALL)
-    private List<Movimentacoes> movimentacoes;
-
+    
     public long getId() {
         return id;
     }

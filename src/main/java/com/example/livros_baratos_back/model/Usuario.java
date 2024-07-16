@@ -35,10 +35,6 @@ public class Usuario {
     
     @OneToMany(mappedBy = "proprietario")
     private List<Livro> livros;
-
-    @JsonIgnore
-    @OneToMany(mappedBy = "usuario", fetch = FetchType.LAZY)  // Aqui corrigimos para "usuario"
-    private Set<Pedido> pedidos;
     
     @Enumerated(EnumType.ORDINAL)
     private TipoUsuario tipoUsuario;
@@ -108,13 +104,6 @@ public class Usuario {
         this.contato = contato;
     }
 
-    public Set<Pedido> getPedidos() {
-        return pedidos;
-    }
-
-    public void setPedidos(Set<Pedido> pedidos) {
-        this.pedidos = pedidos;
-    }
 }
 
 enum TipoUsuario {
