@@ -21,7 +21,7 @@ public class Livro {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
 
     private String nome;
 
@@ -46,7 +46,7 @@ public class Livro {
     @OneToMany(mappedBy = "itemMovimentado", cascade = CascadeType.ALL)
     private List<Movimentacoes> movimentacoes;
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 

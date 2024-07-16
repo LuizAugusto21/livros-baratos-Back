@@ -11,6 +11,7 @@ public class Pessoa extends Usuario {
     private String cpf;
     private ArrayList<Movimentacoes> movimentacoes;
     private ArrayList<Livro> carrinho;
+
     private ArrayList<Livro> favoritos;
     
     public String getCpf() {

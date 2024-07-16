@@ -72,15 +72,15 @@ public class SeboController {
     }
     */
 
-    @PostMapping
-    public ResponseEntity<Sebo> salvarSebo(@RequestBody Sebo sebo){
-        Sebo seboSalvo = seboService.salvarSebo(sebo);
-        URI location = ServletUriComponentsBuilder.fromCurrentRequest()
-            .path("/{id}")
-            .buildAndExpand(seboSalvo.getId())
-            .toUri();
-        return ResponseEntity.created(location).body(seboSalvo);
-    }
+//    @PostMapping
+//    public ResponseEntity<Sebo> salvarSebo(@RequestBody Sebo sebo){
+//        Sebo seboSalvo = seboService.salvarSebo(sebo);
+//        URI location = ServletUriComponentsBuilder.fromCurrentRequest()
+//            .path("/{id}")
+//            .buildAndExpand(seboSalvo.getId())
+//            .toUri();
+//        return ResponseEntity.created(location).body(seboSalvo);
+//    }
 
 //    @PutMapping("/{id}")
 //    public ResponseEntity<Sebo> atualizarSebo(@PathVariable Long id, @RequestBody Sebo seboAtualizado){
